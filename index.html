@@ -18,14 +18,14 @@
       text-align: center;
     }
     header h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: bold;
       background: linear-gradient(to right, #ff7e5f, #feb47b);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     header p {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: #dcdcdc;
       margin-top: 10px;
     }
@@ -54,19 +54,38 @@
     .card h5 {
       font-weight: bold;
       color: #ffd700;
+      font-size: 1.2rem;
     }
     .card p {
       color: #eeeeee;
+      font-size: 0.9rem;
     }
     .btn-custom {
       background-color: #00c6ff;
       color: white;
       font-weight: bold;
       border: none;
+      font-size: 0.9rem;
     }
     .btn-custom:hover {
       background-color: #0072ff;
       color: #fff;
+    }
+    .socials {
+      margin: 40px 0 20px 0;
+      text-align: center;
+    }
+    .socials a {
+      margin: 0 10px;
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+    .socials a img {
+      width: 40px;
+      height: 40px;
+    }
+    .socials a:hover {
+      transform: scale(1.2);
     }
     footer {
       text-align: center;
@@ -84,8 +103,20 @@
   </header>
 
   <main class="container my-4">
-    <div id="repo-list" class="row"></div>
+    <div id="repo-list" class="row gy-4"></div>
   </main>
+
+  <div class="socials">
+    <a href="https://instagram.com/mukticuy1" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+    <a href="https://t.me/mukticuy1" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+    </a>
+    <a href="https://tiktok.com/@yogah_cuy" target="_blank">
+      <img src="https://static.wikia.nocookie.net/tiktok/images/e/eb/TikTok_Logo.png/revision/latest?cb=20210816124125" alt="TikTok">
+    </a>
+  </div>
 
   <footer>
     Made with love by Muktiaji13
@@ -99,7 +130,7 @@
         const repoList = document.getElementById('repo-list');
         repos.forEach(repo => {
           const col = document.createElement('div');
-          col.className = 'col-md-4 d-flex align-items-stretch';
+          col.className = 'col-12 col-sm-6 col-md-4 d-flex align-items-stretch';
           col.innerHTML = `
             <div class="card p-4">
               <div>
