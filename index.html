@@ -122,28 +122,40 @@
     Made with love by Muktiaji13
   </footer>
 
-  <script>
-    const username = 'muktiaji13';
-    fetch(`https://api.github.com/users/${username}/repos`)
-      .then(response => response.json())
-      .then(repos => {
-        const repoList = document.getElementById('repo-list');
-        repos.forEach(repo => {
-          const col = document.createElement('div');
-          col.className = 'col-12 col-sm-6 col-md-4 d-flex align-items-stretch';
-          col.innerHTML = `
-            <div class="card p-4">
-              <div>
-                <h5>${repo.name}</h5>
-                <p>${repo.description ? repo.description : 'No description available'}</p>
-              </div>
-              <a href="${repo.html_url}" target="_blank" class="btn btn-custom mt-3">View on GitHub</a>
+  <!-- Ganti bagian script doang ya bos -->
+<script>
+  const username = 'muktiaji13';
+  fetch(`https://api.github.com/users/${username}/repos`)
+    .then(response => response.json())
+    .then(repos => {
+      const repoList = document.getElementById('repo-list');
+      repos.forEach(repo => {
+        const col = document.createElement('div');
+        col.className = 'col-12 col-sm-6 col-md-4 d-flex align-items-stretch';
+
+        // Cek homepage atau fallback ke GitHub Pages
+        let webLink = repo.homepage;
+        if (!webLink && repo.name !== `${username}.github.io`) {
+          webLink = `https://${username}.github.io/${repo.name}`;
+        } else if (!webLink && repo.name === `${username}.github.io`) {
+          webLink = `https://${username}.github.io`;
+        }
+
+        col.innerHTML = `
+          <div class="card p-4">
+            <div>
+              <h5>${repo.name}</h5>
+              <p>${repo.description ? repo.description : 'No description available'}</p>
             </div>
-          `;
-          repoList.appendChild(col);
-        });
-      })
-      .catch(error => console.error('Error:', error));
-  </script>
-</body>
-</html>
+            <div class="mt-3 d-grid gap-2">
+              <a href="${repo.html_url}" target="_blank" class="btn btn-custom">View on GitHub</a>
+              <a href="${webLink}" target="_blank" class="btn btn-outline-light ${webLink ? '' : 'disabled'}">Visit Website</a>
+            </div>
+          </div>
+        `;
+        repoList.appendChild(col);
+      });
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+
